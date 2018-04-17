@@ -6,6 +6,10 @@ echo "usuario" $avbravo_user
 echo "grupo" $avbravo_group
 echo "avbravo_user_home" $avbravo_user_home
 
+#mercurial
+echo "instalandpo mercurial git"
+sudo apt-get install mercurial git
+
 #mongodb
 echo "Instalado Mongodb"
 
