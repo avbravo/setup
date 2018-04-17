@@ -7,12 +7,12 @@ avbravo_user_home=~
 #echo "avbravo_user_home" $avbravo_user_home
 echo "------------------------------------------------"
 echo "             Instalador                         "
-echo "  Mercurial, git, java, mongodb"
+echo "  Mercurial, git, java, mongodb, glogg editor"
 echo "------------------------------------------------"
 
 #mercurial
-echo "instalandpo mercurial git"
-sudo apt-get install mercurial git
+echo "instalandpo mercurial git glogg"
+sudo apt-get install mercurial git glogg
 #------------------------------------
 #instalar java
 #------------------------------------
