@@ -7,7 +7,7 @@ avbravo_user_home=~
 #echo "avbravo_user_home" $avbravo_user_home
 echo "------------------------------------------------"
 echo "             Instalador                         "
-echo "  Mercurial, git, java, mongodb, glogg editor"
+echo "  Mercurial, git, java, mongodb, glogg editor, netbeans"
 echo "------------------------------------------------"
 
 #mercurial
@@ -45,6 +45,13 @@ sudo mkdir -p /data/db
 sudo chmod 777 /data/db
 echo "agregando a /etc/profile"
 sudo sed -i '$a export PATH=$PATH:'$avbravo_user_home'/mongodb/bin\' /etc/profile
+
+#NetBeans
+cd $avbravo_user_home/software/netbeans
+sudo chmod 775 *.sh
+./netbeans-8.2-linux.sh
+
+
 
 #--------------------------------------
 #Terminado
