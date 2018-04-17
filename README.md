@@ -1,30 +1,11 @@
 # setup
-<h2> clonar</h2>
 
- git clone https://github.com/avbravo/setup.git
-
-cd setup
-
-git status
-
-//crear el archivo setup.sh
-
-<br>
-Agregar el archivo
-
-git add setup.sh
-
-git status
+<h1> setup.sh </h1>
+Instala mercurial, git. glogg
+        Mongodb, Java
+        
+Configura /etc/profile
 
 
-git diff
-
-git config --global user.name avbravo
-
-
- git config --global user.email avbravo@gmail.com
-
-
-git commit
-
-git push
+<h1> </h1>
+Realiza backup y restauracion de mongodb
