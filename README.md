@@ -6,6 +6,10 @@ Instala mercurial, git. glogg
         
 Configura /etc/profile
 
+./setup.sh
 
-<h1> </h1>
+
+<h1>backuprestoremongodb.sh </h1>
 Realiza backup y restauracion de mongodb
+
+./backuprestoremongodb.sh
