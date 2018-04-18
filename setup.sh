@@ -45,7 +45,8 @@ if [ ! -d $dir_mongodb ]; then
 if [ ! -d $dir_netbeans ]; then
     mkdir $dir_netbeans
   fi
-menu = "b"
+menu="a"
+opcion=""
 continue="si"
 while [ "$continue" == "si" ]
 do
@@ -53,12 +54,12 @@ do
 
 echo "------------------------------------------------"
 echo "             Instalador                         "
-echo "    1)Instalar (jdk$java_version ,MongoDB $mongodb_version,NetBeans $netbeans_version), mercurial, git, glogg"
-echo "   2)salir"
+echo "   a)Instalar (jdk$java_version ,MongoDB $mongodb_version,NetBeans $netbeans_version), mercurial, git, glogg"
+echo "   b)salir"
 echo "   Ingrese el numero de opcion"
 read menu
 echo "------------------------------------------------"
-if [ "$menu" == "1" ] ; then
+if [ "$menu" == "a" ] ; then
     #mercurial
     echo "instalandpo mercurial git glogg"
     sudo apt-get install mercurial git glogg
@@ -135,11 +136,14 @@ if [ "$menu" == "1" ] ; then
     echo "--------------------------------------"
     continuar="no"
 else
-   if [ "$menu" == "2" ] ; then
+
+   if [ "$menu" == "b" ] ; then
       continuar="no"
-     else
-       echo "Numero de opcion incorrecta presione una tecla"
-       read opcion
+   else       
+     echo "Opcion invalida (a/b)"
+                   echo "presione una tecla"
+                   read tecla
     fi
 fi
 done
+
