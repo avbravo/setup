@@ -45,19 +45,12 @@ if [ ! -d $dir_mongodb ]; then
 if [ ! -d $dir_netbeans ]; then
     mkdir $dir_netbeans
   fi
-menu="a"
-opcion=""
-continue="si"
-while [ "$continue" == "si" ]
-do
+
   clear
 
 echo "------------------------------------------------"
 echo "             Instalador                         "
-echo "   a)Instalar (jdk$java_version ,MongoDB $mongodb_version,NetBeans $netbeans_version), mercurial, git, glogg"
-echo "   b)salir"
-echo "   Ingrese el numero de opcion"
-read menu
+echo "   Instalar (jdk$java_version ,MongoDB $mongodb_version,NetBeans $netbeans_version), mercurial, git, glogg"
 echo "------------------------------------------------"
     #mercurial
     echo "instalandpo mercurial git glogg"
