@@ -61,9 +61,13 @@ if [ ! -f $search_jdk_usr ]; then
             echo "No existe jdk "$java_version " en "$search_jdk_oracle " se inicia la descarga desde java.oracle.com"
             cd $dir_oracle
             wget http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz?AuthParam=1524065010_fe30ab0fa219c2e0ef1c2c643c7c1c48
+            echo "descomprimiendo jdk-"$java_version  "-linux-x64.tar.gz"
+            tar xvfz jdk-8u171-linux-x64.tar.gz          
       else
           echo "si existe"
        fi
+       echo "moviendo jdk"$java_version " a "$j
+       sudo mv jdk1.8.0_171 /usr/local/
  else
     echo "El jdk"$java_version " fue instalado anteriormente en /usr/local/jdk"$java_version
   fi
@@ -77,11 +81,7 @@ if [ ! -f $buscar ]; then
 
 
 
-echo "descomprimiendo jdk-"$java_version  "-linux-x64.tar.gz"
-tar xvfz jdk-8u171-linux-x64.tar.gz
 
-cd $avbravo_user_home/software/java/oracle
-sudo mv jdk1.8.0_171 /usr/local/
 
 echo "Configurando JAVA_HOME...."
 #Java
