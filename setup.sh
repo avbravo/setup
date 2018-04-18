@@ -8,10 +8,12 @@ dir_oracle=$dir_java"/oracle"
 dir_mongodb=$dir_software"/mongodb"
 dir_netbeans=$dir_software"/netbeans"
 java_version="jdk-8u171"
-mongodb_version="jdk-8u171"
+mongodb_version="3.6.4"
+mongodb_dowload="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-3.6.4.tgz"
 directorioactual=$(cd "$(dirname "$0")"; pwd -P)
 search_jdk_oracle=$dir_oracle"/"$java_version"-linux-x64.tar.gz"
 search_jdk_usr="usr/local/jdk"$java_version
+search_mongodb_home=$user_home"/mongodb"
 
 
 #crear directorios
@@ -26,7 +28,7 @@ if [ ! -d $dir_software ]; then
     mkdir $dir_oracle
   fi
 
-if [ ! -d $dir_mongodb ]; then
+if [ ! -d $dir_mongodb ]; then_64-ubuntu1604-3.6.4.tg
     mkdir $dir_mongodb
   fi
 
@@ -83,7 +85,10 @@ sudo sed -i '$a export PATH=$PATH:${JAVA_HOME}/bin\' /etc/profile
 #mongodb
 #--------------------------------------
 echo "Instalado Mongodb"
-
+if [ ! -f $search_mongodb_home ]; then
+   echo "No se encontro el " $search_mongodb_home " 
+   
+   
 #renombrar
 cd $user_home/software/mongodb
 tar xzvf mongodb-linux-x86_64-ubuntu1604-3.6.2.tgz
