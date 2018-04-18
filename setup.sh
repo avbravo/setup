@@ -28,16 +28,18 @@ search_netbeans_zip=$dir_netbeans"/netbeans-"$netbeans_version"-linux.sh"
 echo "verificando directorios"
 if [ ! -d $dir_software ]; then
     mkdir $dir_software
-  fi 
+fi 
+ 
  if [ ! -d $dir_java ]; then
     mkdir $dir_java
   fi
+ 
  if [ ! -d $dir_oracle ]; then
     mkdir $dir_oracle
   fi
 
-if [ ! -d $dir_mongodb ]; then_64-ubuntu1604-3.6.4.tg
-    mkdir $dir_mongodb
+if [ ! -d $dir_mongodb ]; then
+   mkdir $dir_mongodb
   fi
 
 if [ ! -d $dir_netbeans ]; then
@@ -78,7 +80,7 @@ if [ "$menu" == "1" ] ; then
            sudo mv jdk1.8.0_171 /usr/local/             
      else
         echo "El jdk"$java_version " fue instalado anteriormente en /usr/local/jdk"$java_version
-      fi
+     fi
 
     if grep --quiet -r -i "JAVA_HOME" /etc/profile; then
       #echo "existe el JAVA_HOME  en el profile"
@@ -112,7 +114,7 @@ if [ "$menu" == "1" ] ; then
         fi
     fi
 
-echo "--------------------------------------"
+    echo "--------------------------------------"
     echo "------------------------------------"
     echo "Instalado NetBeans"$netbeans_version
     echo "------------------------------------"
