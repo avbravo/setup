@@ -1,6 +1,8 @@
 avbravo_user=$(whoami)
 avbravo_group=$(id -g -n $avbravo_user)
 avbravo_user_home=~
+java_version="jdk-8u171"
+
 #usuario
 #echo "usuario" $avbravo_user
 #echo "grupo" $avbravo_group
@@ -17,13 +19,19 @@ sudo apt-get install mercurial git glogg
 #instalar java
 #------------------------------------
 echo "instalando Java jdk1.8"
+echo "descargando... jdk-: "$java_version
+wget http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz?AuthParam=1524065010_fe30ab0fa219c2e0ef1c2c643c7c1c48
+
+
+echo "descomprimiendo jdk-"$java_version  "-linux-x64.tar.gz"
+tar xvfz jdk-8u171-linux-x64.tar.gz
+
 cd $avbravo_user_home/software/java/oracle
-tar xvfz jdk-8u162-linux-x64.tar.gz
-sudo mv jdk1.8.0_162 /usr/local/
+sudo mv jdk1.8.0_171 /usr/local/
 
 echo "Configurando JAVA_HOME...."
 #Java
-sudo sed -i '$a export JAVA_HOME=/usr/local/jdk1.8.0_162\' /etc/profile
+sudo sed -i '$a export JAVA_HOME=/usr/local/jdk1.8.0_171\' /etc/profile
 sudo sed -i '$a export JRE_HOME=${JAVA_HOME}/jre\' /etc/profile
 sudo sed -i '$a export PATH=$PATH:${JAVA_HOME}/bin\' /etc/profile
 
