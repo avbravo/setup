@@ -59,7 +59,6 @@ echo "   b)salir"
 echo "   Ingrese el numero de opcion"
 read menu
 echo "------------------------------------------------"
-if [ "$menu" == "a" ] ; then
     #mercurial
     echo "instalandpo mercurial git glogg"
     sudo apt-get install mercurial git glogg
@@ -135,15 +134,5 @@ if [ "$menu" == "a" ] ; then
         echo "Instalacion finalizada
     echo "--------------------------------------"
     continuar="no"
-else
-
-   if [ "$menu" == "b" ] ; then
-      continuar="no"
-   else       
-     echo "Opcion invalida (a/b)"
-                   echo "presione una tecla"
-                   read tecla
-    fi
-fi
 done
 
