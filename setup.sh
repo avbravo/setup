@@ -124,8 +124,8 @@ echo "------------------------------------------------"
     fi
 
     echo "--------------------------------------"
-        echo "Instalacion finalizada
+    echo "Instalacion finalizada
     echo "--------------------------------------"
-    continuar="no"
-done
+  
+
 
