@@ -16,10 +16,11 @@ Configura en /etc/profile
         <li>   JAVA_HOME</li>
         <li>   MONGODB_HOME</li>
 </ul>       
-Pasos:
-1. Descarge el jdk desde java.oracle.com y copielo en 
-/home/usuario/software/java/oracle
-2. El archivo setup.sh cuenta con las versiones:
+<h3>Pasos:</h3>
+<ul>
+        <li>1. Descarge el jdk desde java.oracle.com y copielo en /home/usuario/software/java/oracle</li>
+        <li>2. El archivo setup.sh cuenta con las versiones:</li>
+</ul>        
 <p>
         <ul>
                 <li>java_version="8u172"</li>
