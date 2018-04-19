@@ -1,10 +1,21 @@
 # setup
 
 <h1> setup.sh </h1>
-Instala mercurial, git. glogg
-        Mongodb, Java, NetBeans
-        
-Configura /etc/profile
+Instala
+<ul>
+        <li>mercuria</li>
+        <li> git</li>
+        <li>glogg</li>
+        <li>Mongodb</li>
+        <li>Java</li>
+        <li>NetBeans</li>
+</ul>        
+       
+Configura en /etc/profile
+<ul>
+        <li>   JAVA_HOME</li>
+        <li>   MONGODB_HOME</li>
+</ul>       
 Pasos:
 1. Descarge el jdk desde java.oracle.com y copielo en 
 /home/usuario/software/java/oracle
