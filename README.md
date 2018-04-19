@@ -30,12 +30,12 @@ Configura en /etc/profile
   <li>jdk_usr="jdk1.8.0_172"</li>
   <li>mongodb_version="3.6.4"</li>
   <li>netbeans_version="8.2"</li>
-  <li>Usted puede editarlas si dese para instalar una versión diferente</li>
-                </ul>
+  <li>Puede editar estos valores para versiones diferentes</li>
+ </ul>
 </p>
 
 <br>
-Se descargaran:
+Si no se encuentran se descargaran automaticamente en:
 <ul>
         <li>mongodb_version.tgz si no existe en /software/mongodb/ </li>
         <li>netbeans_version.sh si no existe en /software/netbeans/</li>
