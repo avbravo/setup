@@ -3,7 +3,7 @@
 <h1> setup.sh </h1>
 Instala
 <ul>
-        <li>mercuria</li>
+        <li>mercurial</li>
         <li> git</li>
         <li>glogg</li>
         <li>Mongodb</li>
@@ -18,7 +18,8 @@ Configura en /etc/profile
 </ul>       
 <h3>Pasos:</h3>
 <ul>
-        <li>1. Descarge el jdk desde java.oracle.com y copielo en /home/usuario/software/java/oracle</li>
+        <li>1. Descarge el jdk desde java.oracle.com</li>
+        <li>2. Copielo en /home/usuario/software/java/oracle</li>
         <li>2. El archivo setup.sh cuenta con las versiones:</li>
 </ul>        
 <p>
