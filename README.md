@@ -25,15 +25,15 @@ Configura en /etc/profile
 <p>
                
  El archivo setup.sh cuenta con las versiones:
-
-        <ul>
-                <li>java_version="8u172"</li>
+     <ul>
+  <li>java_version="8u172"</li>
   <li>jdk_usr="jdk1.8.0_172"</li>
   <li>mongodb_version="3.6.4"</li>
   <li>netbeans_version="8.2"</li>
   <li>Usted puede editarlas si dese para instalar una versión diferente</li>
                 </ul>
 </p>
+
 <br>
 Se descargaran:
 <ul>
