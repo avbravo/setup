@@ -20,9 +20,12 @@ Configura en /etc/profile
 <ul>
         <li>1. Descarge el jdk desde java.oracle.com</li>
         <li>2. Copielo en /home/usuario/software/java/oracle</li>
-        <li>2. El archivo setup.sh cuenta con las versiones:</li>
+        <li>3. De permisos al archivo setup.sh( sudo chmod 775 setup.sh)</li>
 </ul>        
 <p>
+               
+ El archivo setup.sh cuenta con las versiones:
+
         <ul>
                 <li>java_version="8u172"</li>
   <li>jdk_usr="jdk1.8.0_172"</li>
