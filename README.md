@@ -18,6 +18,12 @@ Pasos:
   <li>Usted puede editarlas si dese para instalar una versión diferente</li>
                 </ul>
 </p>
+<br>
+Se descargaran:
+<ul>
+        <li>mongodb_version.tgz si no existe en /software/mongodb/ </li>
+        <li>netbeans_version.sh si no existe en /software/netbeans/</li>
+        </ul>
 
 3.Ejecute
 <h3>./setup.sh</h3>
