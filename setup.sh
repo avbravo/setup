@@ -1,3 +1,10 @@
+#versiones
+#Actualice estos valores con las versiones correspondientes
+java_version="8u172"
+jdk_usr="jdk1.8.0_172"
+mongodb_version="3.6.4"
+netbeans_version="8.2"
+
 #variables
 user=$(whoami)
 group=$(id -g -n $user)
@@ -7,11 +14,7 @@ dir_java=$dir_software"/java"
 dir_oracle=$dir_java"/oracle"
 dir_mongodb=$dir_software"/mongodb"
 dir_netbeans=$dir_software"/netbeans"
-#versiones
-java_version="8u172"
-jdk_usr="jdk1.8.0_172"
-mongodb_version="3.6.4"
-netbeans_version="8.2"
+
 #-------------------
 #download
 #------------------
@@ -20,7 +23,7 @@ netbeans_download="http://download.netbeans.org/netbeans/"$netbeans_version"/fin
 directorioactual=$(cd "$(dirname "$0")"; pwd -P)
 #search
 search_jdk_oracle=$dir_oracle"/jdk-"$java_version"-linux-x64.tar.gz"
-search_jdk_usr="usr/local/"$jdk_usr
+search_jdk_usr="/usr/local/"$jdk_usr
 search_mongodb_home=$user_home"/mongodb"
 search_netbeans_home=$user_home"/netbeans-"$netbeans_version
 #.tgz .sh
@@ -56,7 +59,7 @@ if [ ! -d $dir_netbeans ]; then
 descomprimir_mongodb () {
           descomprimir="mongodb-linux-x86_64-ubuntu1604-$mongodb_version.tgz"
            cd $dir_mongodb
-           tar xzvf $descomprimir
+           tar xzvf $descomprimir > mongo.txt
            mv mongodb-linux-x86_64-ubuntu1604-$mongodb_version $search_mongodb_home 
 	   sudo mkdir -p /data/db
            sudo chmod 777 /data/db
@@ -76,10 +79,10 @@ agregar_jdk_profile() {
                if grep --quiet -r -i "JAVA_HOME" /etc/profile; then
 		       echo "		" 
 	        else  
-		       echo  "		Agregando el path JAVA_HOME en /etc/profile "
+		       echo  "	Agregando el path JAVA_HOME en /etc/profile "
+
        		  	#Java_home
-                       java_home_export="export JAVA_HOME=/usr/local/$jdk_usr\"
-	            sudo sed -i '$a $java_home_export' /etc/profile
+                 sudo sed -i '$a export JAVA_HOME=/usr/local/'$jdk_usr /etc/profile
 		    sudo sed -i '$a export JRE_HOME=${JAVA_HOME}/jre\' /etc/profile
 	            sudo sed -i '$a export PATH=$PATH:${JAVA_HOME}/bin\' /etc/profile
 	        fi
@@ -131,7 +134,7 @@ echo "------------------------------------------------"
     echo "------------------------------------"
 
     if [ ! -d $search_jdk_usr ]; then
-#       echo "	No se encontro el jdk"$java_version " instalado en "$search_jdk_usr
+       echo "	No se encontro el jdk"$java_version " instalado en "$search_jdk_usr
        echo "	Buscando jdk-"$java_version"-linux-x64.tar.gz"
        echo "      en "$dir_oracle
            if [ ! -f $search_jdk_oracle ]; then
@@ -144,7 +147,7 @@ echo "------------------------------------------------"
            else
                 cd $dir_oracle
                 echo "		Descomprimiendo jdk-"$java_version"-linux-x64.tar.gz"
-                tar xvfz "jdk-"$java_version"-linux-x64.tar.gz"  
+                tar xvfz "jdk-"$java_version"-linux-x64.tar.gz" > java.txt
                 echo "		moviendo "$jdk_user  " a /usr/local/"$jdk_usr 
                 sudo mv $jdk_usr /usr/local/   
                 agregar_jdk_profile
