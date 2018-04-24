@@ -1,3 +1,4 @@
+#!/bin/bash
 #Monitorea el consumo de memoria RAM, 
 #mata los procesos de Java
 #reinicia Wildfly
