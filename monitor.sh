@@ -17,7 +17,7 @@ limite_memoria=1500
 #---------------------------------
 #Wildfly
 #---------------------------------
-wildfly_dir = "/opt/widlfly"
+wildfly_dir= "/opt/widlfly"
 wildfly_bin_dir="/opt/wildfly/bin/"
 #--------------------------------
 #Log 
