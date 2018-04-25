@@ -17,14 +17,14 @@ limite_memoria=1500
 #---------------------------------
 #Wildfly
 #---------------------------------
-wildfly_dir= "/opt/widlfly"
+wildfly_dir="/opt/widlfly"
 wildfly_bin_dir="/opt/wildfly/bin/"
 #--------------------------------
 #Log 
 #Se creara la carpeta log dentro del directorio del usuario
 #archivo monitor.log contiene los registros del log.
 #---------------------------------
-log_dir=$user_home/log"
+log_dir=$"user_home/log"
 log_name="monitor.log"
 #star
 
@@ -39,27 +39,25 @@ fi
 
 
 #-------------------------------------------
-#log
+#Log
 #------------------------------------------
 log_file_create(){
 
- if [ ! -d "$user_home/log" ]; then
-      cd $user_home
-      mkdir log
- fi
+    if [ ! -d "$user_home/log" ]; then
+       cd $user_home
+       mkdir log
+    fi
     cd log
-     if [ ! -f "$user_home/log/monitor.log" ]; then
+    if [ ! -f "$user_home/log/monitor.log" ]; then
        echo "[$DIA $HORA][INFO] Creacion archivo log" >> monitor.log
-     fi
-   
+     fi   
 }
 
 
 
-
-#---------------------------
-#leer_memory()
-#---------------------------
+#---------------------------------
+#Leer_memory()
+#--------------------------------
 leer_memory(){
 #memoria usada
  echo " vea los archivos porcentaje.txt y memory.txt"
@@ -68,26 +66,27 @@ leer_memory(){
 
  for ram in $(cat memory.txt); 
  do 
-    sed -i '1i[$DIA $HORA][DEBUG] Memoria consumida:$ram' >> monitor.log
+    cd $user_home/log
+    sed -i "1i[$DIA $HORA][DEBUG] Memoria consumida:$ram"  monitor.log
     if [ "$ram" -ge $limite_memoria ]; then
        echo "Memoria:$ram es mayor que el limite: $limite_memoria"
        echo " ejecutar: java_kill wildfly_restar"
        java_kill
        wildfly_restar
     else
-      sed -i '1i[$DIA $HORA][DEBUG] Memoria consumida:$line es menor que el limite: $limite_memoria' >> monitor.log
+      sed -i "1i[$DIA $HORA][DEBUG] Esta estable el consumo de memoria $ram" monitor.log
       echo "$line  es menor que el limite"
     fi
  done
 }
 
-
-#------------------------
+#-----------------------
 # java_kill()
 #-------------------
 java_kill () {
      echo "Ejecutando killall -9 java"
-     sed -i '1i[$DIA $HORA][INFO] Ejecutando killall -9 java' >> monitor.log
+    cd $user_home/log
+     sed -i "1i[$DIA $HORA][INFO] Ejecutando killall -9 java"  monitor.log
      killall -9 java
 }
 
@@ -96,8 +95,8 @@ java_kill () {
 #--------------------------------------
 wildfly_restar(){
      echo " Reiniciando wildfly a"$DIA $HORA
-     sed -i '1i[$DIA $HORA][INFO] Ejecutando reinicio de wildfly' >> monitor.log
      cd $user_home/log
+     sed -i "1i[$DIA $HORA][INFO] Ejecutando reinicio de wildfly"  monitor.log
 #-----------------------------------
 #remove .xml
 #-----------------------------------
@@ -108,16 +107,20 @@ wildfly_restar(){
    do 
      if [ "$files" -ge 1 ]; then
          echo " Eliminando archivos .xml de standalone/data/timer-service-data"
-         sed -i '1i[$DIA $HORA][INFO] Eliminando archivos .xml de standalone/data/timer-service-data' >> monitor.log
          rm -r *.*
-     else
+         cd $user_home/log
+          sed -i "1i[$DIA $HORA][INFO] Eliminando archivos .xml de standalone/data/timer-service-data" monitor.log
+       else
         echo "No hay archivos es timer-sevice-data"
-        sed -i '1i[$DIA $HORA][INFO] No hay archivos .xml de standalone/data/timer-service-data' >> monitor.log
+        cd $user_home/log
+        sed -i "1i[$DIA $HORA][INFO] No hay archivos .xml de standalone/data/timer-service-data"  monitor.log
      fi
    done
   
-   cd $wildfly_bin_dir
-   sed -i '1i[$DIA $HORA][INFO] Reiniciando wildfly' >> monitor.log
+  
+ cd $user_home/log
+   sed -i "1i[${DIA} ${HORA}][INFO] Reiniciando wildfly" monitor.log
+ cd $wildfly_bin_dir
    sh ./standalone.sh -b 127.0.0.1 -bmanagement 127.0.0.1 & > salida.txt
 }
 
@@ -136,18 +139,10 @@ echo "------------------------------------------------"
 log_file_create
 
 echo " iniciando proceso de verificacion"
-sed -i '1i[$DIA $HORA][START] Iniciando proceso de verificacion' >> monitor.log
+sed -i "1i-----------------------------------------------------"  $user_home/log/monitor.log
+sed -i "1i[${DIA} $HORA][START] Iniciando proceso de verificacion"  $user_home/log/monitor.log
+sed -i "1i-----------------------------------------------------"  $user_home/log/monitor.log
 
-
-
-#awk '/^Mem/ {printf("%u%%", 100*$3/$2);}' <(free -m)
-#echo ""
-#awk '/^Mem/ {print $3}' <(free -m)
 leer_memory
  
- echo "--------------------------------------"
  echo "Instalacion finalizada"
- echo "--------------------------------------"
-
-  
-
