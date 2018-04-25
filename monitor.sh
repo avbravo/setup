@@ -38,6 +38,21 @@ wildfly_restar(){
  cd $user_home/log
   sed -i '$a Reiniciando Wildfly $DIA $HORA' $log_name
 
+#remove .xml
+cd  /opt/wildfly/standalone/data/timer-service-data
+ls | wc -l > files.txt
+for line in $(cat files.txt); 
+do 
+  if [ "$line" -ge 1 ]; then
+    echo "$line  es mayor que 3000"
+    echo " Eliminando archivos .xml"
+    rm -r *.xml
+ else
+    echo "No hay archivos es timer-sevice-data"
+ fi
+  done
+ 
+ 
    cd $wildfly_bin_dir
    sh ./standalone.sh -b 127.0.0.1 -bmanagement 127.0.0.1 & > salida.txt
 }
