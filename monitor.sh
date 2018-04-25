@@ -2,26 +2,32 @@
 #Monitorea el consumo de memoria RAM, 
 #mata los procesos de Java
 #reinicia Wildfly
-
+#----------------------
 #variables
+#-----------------------
 user=$(whoami)
 group=$(id -g -n $user)
 user_home=~
 DIA=`date +"%Y_%m_%d"`
 HORA=`date +"_%H_%M"`
-#directories
+#---------------------------------
+#Wildfly
+#---------------------------------
 wildfly_dir = "/opt/widlfly"
 wildfly_bin_dir="/opt/wildfly/bin/"
-#directorio para log
-#log_dir="/opt/log"
-log_dir="/home/avbravo/log"
-log_name="ejbcarest.log"
+#--------------------------------
+#Log 
+#Se creara la carpeta log dentro del directorio del usuario
+#archivo monitor.log contiene los registros del log.
+#---------------------------------
+log_dir=$user_home/log"
+log_name="monitor.log"
 #star
 
 
 #saber donde esta instalado
 #which git
-
+#---------------------
 #crear directorios
 echo "verificando directorios"
 if [ ! -d $widlfly_dir ]; then
@@ -35,22 +41,23 @@ java_kill () {
 
 wildfly_restar(){
    echo " Reiniciando wildfly a"$DIA $HORA
- cd $user_home/log
-  sed -i '$a Reiniciando Wildfly $DIA $HORA' $log_name
-
+   cd $user_home/log
+   sed -i '$a Reiniciando Wildfly $DIA $HORA' $log_name
+#-----------------------------------
 #remove .xml
+#-----------------------------------
 cd  /opt/wildfly/standalone/data/timer-service-data
+#obtener la cantidad de archivos
 ls | wc -l > files.txt
 for line in $(cat files.txt); 
 do 
-  if [ "$line" -ge 1 ]; then
-    echo "$line  es mayor que 3000"
-    echo " Eliminando archivos .xml"
-    rm -r *.xml
- else
-    echo "No hay archivos es timer-sevice-data"
- fi
-  done
+   if [ "$line" -ge 1 ]; then
+       echo " Eliminando archivos .xml"
+       rm -r *.xml
+    else
+       echo "No hay archivos es timer-sevice-data"
+    fi
+done
  
  
    cd $wildfly_bin_dir
@@ -58,9 +65,9 @@ do
 }
 
 log_file_create(){
+#-----------------------------
 #verifica el directorio
-#  if [ ! -d "/opt/log" ]; then
- if [ ! -d "$user_home/log" ]; then
+if [ ! -d "$user_home/log" ]; then
      cd $user_home
      mkdir log
   fi
@@ -74,8 +81,9 @@ log_file_create(){
 log_file_text_add(){
 $1
     cd $user_home/log
+      if [ ! -f "$user_home/log/monitor.log" ]; then
 #   sed -i '$a mas Aqui el texto que ira en la ultima linea' filename
-   sed -i '$a $1' ejbcarest.log
+    sed -i '$a $1' monitor.log
     cd $wildfly_bin
 }
 
@@ -105,8 +113,7 @@ wildfly_restar
 }
 
 
-
-  clear
+ clear
 
 echo "------------------------------------------------"       
 echo "        Monitor WILDFLY"
