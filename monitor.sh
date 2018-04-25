@@ -24,57 +24,61 @@ log_dir=$user_home/log"
 log_name="monitor.log"
 #star
 
-
-#saber donde esta instalado
+#---------------------------
 #which git
-#---------------------
+#----------------------------
 #crear directorios
 echo "verificando directorios"
 if [ ! -d $widlfly_dir ]; then
     echo " No esta instalado el directorio"$wildlfy_dir
 fi 
 
-
+#-------------------
 java_kill () {
      killall -9 java
 }
 
+#---------------------------------------
 wildfly_restar(){
-   echo " Reiniciando wildfly a"$DIA $HORA
+ 
+ echo " Reiniciando wildfly a"$DIA $HORA
    cd $user_home/log
    sed -i '$a Reiniciando Wildfly $DIA $HORA' $log_name
 #-----------------------------------
 #remove .xml
 #-----------------------------------
-cd  /opt/wildfly/standalone/data/timer-service-data
-#obtener la cantidad de archivos
-ls | wc -l > files.txt
-for line in $(cat files.txt); 
-do 
-   if [ "$line" -ge 1 ]; then
-       echo " Eliminando archivos .xml"
-       rm -r *.xml
-    else
-       echo "No hay archivos es timer-sevice-data"
-    fi
-done
- 
- 
+   cd  /opt/wildfly/standalone/data/timer-service-data
+   #obtener la cantidad de archivos
+   ls | wc -l > files.txt
+   for line in $(cat files.txt); 
+   do 
+     if [ "$line" -ge 1 ]; then
+         echo " Eliminando archivos .xml"
+         rm -r *.xml
+     else
+        echo "No hay archivos es timer-sevice-data"
+     fi
+   done
+  
    cd $wildfly_bin_dir
    sh ./standalone.sh -b 127.0.0.1 -bmanagement 127.0.0.1 & > salida.txt
 }
 
+#-------------------------------------------
+#log
+#------------------------------------------
 log_file_create(){
-#-----------------------------
-#verifica el directorio
-if [ ! -d "$user_home/log" ]; then
-     cd $user_home
-     mkdir log
-  fi
-#verifica el archivo
+
+ if [ ! -d "$user_home/log" ]; then
+      cd $user_home
+      mkdir log
+ fi
     cd log
-    touch $log_name
- # fi
+     if [ ! -f "$user_home/log/monitor.log" ]; then
+       echo "[$DIA $HORA][INFO] Creacion archivo log" >> monitor.log
+     fi
+    #touch $log_name
+  
 }
 
 #Agrega texto al log
