@@ -50,3 +50,23 @@ Si no se encuentran se descargaran automaticamente en:
 Realiza backup y restauracion de mongodb
 
 ./backuprestoremongodb.sh
+
+
+<p>
+<h1>impresora.sh </h1>
+Instala un script que permite monitorear y detener los trabajos en la cola de la impresora
+./impresora.sh
+</p>
+
+<p>
+<h1>installserver.sh </h1>
+Instala en el servidor
+ <ul>
+        <li> git</li>
+        <li>Mongodb</li>
+        <li>Java</li>
+</ul>        
+</p>
+
+
+
