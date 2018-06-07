@@ -1,4 +1,4 @@
-
+#!/bin/bash
 #reinicia mongodb y la aplicacion
 #Mongodb
 wget -S --spider http://localhost:27017/ 2>&1 | awk '/^  /'
