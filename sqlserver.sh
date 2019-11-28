@@ -49,10 +49,11 @@ else
 		    echo "-----------------------------------------------"
                     sudo systemctl stop mssql-server
                  else
-                     if [ "$menu" == "4" ] ; then
-                       echo "-----------------------------------------------"
-                       echo "Saliendo"
-		       echo "-----------------------------------------------"                              
+                      if [ "$menu" == "4" ] ; then
+                         continue="no"
+                         echo "-----------------------------------------------"
+                         echo "Saliendo"
+		         echo "-----------------------------------------------"                              
                      else
 	                echo "Opcion invalida (1/2/3/4)"
                         echo "presione una tecla"
