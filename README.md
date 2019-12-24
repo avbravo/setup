@@ -69,4 +69,19 @@ Instala en el servidor
 </p>
 
 
+<h1>monitorchrome.sh </h1>
+Monitorea el consumo de memoria
+
+Pasos:
+
+sudo apt install cron
+
+crontab -e
+
+Disparamos cada dos minutos el script
+
+2 * * * * avbravo /home/avbravo/software/setupmaster/monitorchrome.sh
+
+</p>
+
 
