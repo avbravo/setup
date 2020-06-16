@@ -23,7 +23,7 @@ read menu
 if [ "$menu" == "1" ] ; then
 	#realiza respaldos de MongoDB
         echo "-----------------------------------------------"
-	echo 'Status de SQLServer'
+	echo 'Status de MySQL'
 	echo "-----------------------------------------------"
        systemctl status mysql.service
 
