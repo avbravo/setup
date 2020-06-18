@@ -1,5 +1,15 @@
 # setup
 
+<h1> manager.sh </h1>
+<ul>
+        <li> Permite iniciar detener MongoDB</li>
+        <li> Backup/Restore MongoDB</li>
+          <li> Permite iniciar detener mySQL</li>
+        <li> Permite iniciar detener SQLServer</li>
+</ul>
+
+
+
 <h1> setup.sh </h1>
 Instala
 <ul>
