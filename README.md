@@ -6,6 +6,7 @@
         <li> Backup/Restore MongoDB</li>
           <li> Permite iniciar detener mySQL</li>
         <li> Permite iniciar detener SQLServer</li>
+          <li> Ver y eliminar trabajos de la cola impresion</li>
 </ul>
 
 
