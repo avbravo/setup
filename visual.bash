@@ -77,10 +77,10 @@ chmod 777 mongodbstatus.txt
    while IFS= read -r line
    do
   if [[ $line == *"Active: active (running)"* ]]; then
-        mongoDBStatus="Activo"
+        mongoDBStatus="On"
    else
       if [[ $line == *"Active: inactive (dead)"* ]]; then
-              mongoDBStatus="Inactivo"
+              mongoDBStatus="Off"
       fi
   fi
  
@@ -98,15 +98,41 @@ chmod 777 sqlserverstatus.txt
    while IFS= read -r line
    do
       if [[ $line == *"Active: active (running)"* ]]; then
-                sqlServerStatus="Activo"
+                sqlServerStatus="On"
        else
           if [[ $line == *"Active: inactive (dead)"* ]]; then
-                     sqlServerStatus="Inactivo"
+                     sqlServerStatus="Off"
           fi
       fi
  
 done < sqlserverstatus.txt
 }
+
+#----------------------------------------------------
+#Lee el archivo OracleDB
+#----------------------------------------------------
+function getOracleDBStatus()
+{
+     cd $user_home/logdirectory
+    sudo systemctl status oracle-xe >oracledbstatus.txt
+chmod 777 oracledbstatus.txt
+   oracledbStatus=""
+   while IFS= read -r line
+   do
+      if [[ $line == *"Active: active (exited)"* ]]; then
+                oracledbStatus="On"
+       else
+          if [[ $line == *"Active: inactive (dead)"* ]]; then
+                    oracledbStatus="Off"
+          fi
+      fi
+ 
+done < oracledbstatus.txt
+}
+
+
+
+
 
 function contextSwitch {
 	{
@@ -179,10 +205,11 @@ get_status
 getMysqlStatus
 getMongoDBStatus
 getSQLServerStatus
+getOracleDBStatus
 #restore_directory=~/
 #restore_directory=/home/avbravo/Descargas
 CHOICE=$(
-whiptail --title "MySQL: ($mysqlStatus) | MongoDB: ($mongoDBStatus)| SQLSERVER: ($sqlServerStatus) "  --menu "Make your choice" 16 100 9\
+whiptail --title "MySQL: ($mysqlStatus) | MongoDB: ($mongoDBStatus)| SQLSERVER: ($sqlServerStatus) |OracleDB: ($oracledbStatus) "  --menu "Make your choice" 16 100 9\
        "1)" "MySQL Start"   \
 	"2)" "MySQL Stop."  \
 	"3)" "MongoDB Start" \
@@ -192,8 +219,10 @@ whiptail --title "MySQL: ($mysqlStatus) | MongoDB: ($mongoDBStatus)| SQLSERVER: 
 	"7)" "MongoDB Restore." \
 	"8)" "SQLServer Start." \
 	"9)" "SQLServer Stop." \
-	"10)" "Liberar Cache de la RAM." \
-	"11)" "Salir"  3>&2 2>&1 1>&3	
+	"10)" "OracleDB Start." \
+	"11)" "OracleDB Stop." \
+	"12)" "Liberar Cache de la RAM." \
+	"13)" "Salir"  3>&2 2>&1 1>&3	
 )
 
 
@@ -323,10 +352,23 @@ case $CHOICE in
         ;;
 
          "10)")   
+          #    title '   Iniciando OracleDB'
+          sudo service oracle-xe start
+        ;;
+        
+         "11)")   
+          #    title '   Deteniendo OracleDB'
+          sudo service oracle-xe stop
+        ;;
+        
+         "12)")   
           #    title '   Liberando Cache de la memoria Ram'
           sudo $user_home/software/setup-master/limpiamemoria.sh
         ;;
-	"11)") exit
+        
+        
+        
+	"13)") exit
         ;;
 esac
 #whiptail --msgbox "$result" 20 78
